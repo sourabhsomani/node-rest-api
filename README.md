@@ -158,3 +158,82 @@ bookRouter.route('/Books')
         })
     });
 ```
+## Step 7
+Now we are going to insert some data into database.
+```javascript
+db.books.insert({ "title":"Javascript", "author":"Douglous Crookford", "genre":"Programming", "read":false })
+db.books.insert({ "title":"Python", "author":"Mark Lutz", "genre":"programming", "read":false })
+```
+## Step 8
+Now just refresh the page and you will get data.
+
+## Step 9 
+If you want to get data with the query string you can just change the following line of code
+```javascript
+var query=req.query;//For getting the data using query string
+Book.find(query,function(err,books){
+    if(err){
+        res.status(500).send(err);
+    }
+    res.json(books)//res.render when you want to render html
+})
+```
+
+## Step 10
+Now just refresh the page and request with the query string.
+
+## Step 11
+Getting the single item
+```javascript
+//Getting Single Item
+bookRouter.route('/Books/:bookId')
+    .get(function(req,res){
+        Book.findById(req.params.bookId,function(err,book){
+            if(err){
+                res.status(500).send(err);
+            }
+            res.json(book)//res.render when you want to render html
+        })
+    });
+```
+
+---
+Posting Data
+---
+---
+## Step 1
+First download **body-parser**
+```sh
+npm install --save body-parser
+```
+## Step 2
+Include the reference of body-parser
+```javascript
+bodyParser=require('body-parser')
+```
+
+## Step 3
+Adding 2 Middlewares
+```javascript
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+```
+## Step 4
+Add post call
+```javascript
+bookRouter.route('/Books')
+    .post(function(req,res){
+        var book=new Book(req.body);
+        console.log(book)
+        res.send(book)
+    })
+```
+## Step 5
+For post call you can use postman. So I am using postman.
+
+## Step 6
+Now finally we are going to save the data. In the post call we have to call **save** function
+```javascript
+book.save();
+res.status(201).send(book);
+```
