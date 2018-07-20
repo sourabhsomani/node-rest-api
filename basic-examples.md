@@ -36,6 +36,8 @@ fs.watch("temp.txt",function(event,fileName){
 console.log("Watching the file")
 ```
 
+---
+
 ## Example 4
 ```Javascript
 var http=require('http')
