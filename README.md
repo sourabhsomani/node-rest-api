@@ -237,3 +237,15 @@ Now finally we are going to save the data. In the post call we have to call **sa
 book.save();
 res.status(201).send(book);
 ```
+
+---
+Enabling Cors
+---
+---
+```javascript
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+```
